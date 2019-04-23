@@ -10,19 +10,20 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Benchmark                        Mode  Cnt  Score   Error  Units
- * Loops.forEachLambda              avgt    5  8.195 ± 5.520  ms/op
- * Loops.forEachLoop                avgt    5  2.188 ± 0.689  ms/op
- * Loops.forwardForLoopWithConst    avgt    5  2.651 ± 0.296  ms/op
- * Loops.reverseForLoop             avgt    5  2.616 ± 0.261  ms/op
- * Loops.iterator                   avgt    5  2.248 ± 0.587  ms/op
- * Loops.lambda                     avgt    5  7.821 ± 3.000  ms/op
- * Loops.parallelStream             avgt    5  5.455 ± 1.655  ms/op
- * Loops.stream                     avgt    5  8.143 ± 1.389  ms/op
+ Benchmark                               Mode  Cnt   Score    Error  Units
+ LoopsList.forEachLoop                   avgt    5  20.297 ±  3.497  ms/op
+ LoopsList.iterator                      avgt    5  20.525 ± 10.308  ms/op
+ LoopsList.reverseForLoopWithFinalLocal  avgt    5  21.860 ± 13.554  ms/op
+ LoopsList.forwardForLoopWithConst       avgt    5  28.248 ±  3.746  ms/op
+ LoopsList.reverseForLoop                avgt    5  28.739 ±  8.553  ms/op
+ LoopsList.parallelStream                avgt    5  59.685 ± 14.912  ms/op
+ LoopsList.lambda                        avgt    5  73.399 ± 16.406  ms/op
+ LoopsList.stream                        avgt    5  78.689 ± 13.484  ms/op
+ LoopsList.forEachLambda                 avgt    5  79.026 ± 12.371  ms/op
  */
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Measurement(iterations = 5)
-@Warmup(iterations = 5)
+@Warmup(iterations = 2)
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 public class LoopsList {
@@ -95,6 +96,16 @@ public class LoopsList {
     }
 
     @Benchmark
+    public int reverseForLoopWithFinalLocal() {
+        int max = Integer.MIN_VALUE;
+        final List<Integer> list = mList;
+        for (int i = SIZE - 1; i >= 0; i--) {
+            max = Integer.max(max, list.get(i));
+        }
+        return max;
+    }
+
+    @Benchmark
     public int reverseForLoop() {
         int max = Integer.MIN_VALUE;
         for (int i = SIZE - 1; i >= 0; i--) {
@@ -102,6 +113,7 @@ public class LoopsList {
         }
         return max;
     }
+
 
     @Benchmark
     public int parallelStream() {
