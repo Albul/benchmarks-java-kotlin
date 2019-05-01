@@ -15,6 +15,8 @@
  */
 package com.olekdia.datetime;
 
+import net.time4j.CalendarUnit;
+import net.time4j.SystemClock;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Instant;
 import org.openjdk.jmh.annotations.*;
@@ -28,19 +30,20 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 /**
- Benchmark                        Mode  Cnt        Score        Error   Units
- PlusDays.emptyMethod            thrpt    3  2831597.152 ± 1648131.285  ops/ms
- PlusDays.jodaLocalDateTime      thrpt    3    84447.391 ±   73131.181  ops/ms
- PlusDays.jodaDateTimeUTC        thrpt    3    41128.731 ±    939.599  ops/ms
- PlusDays.threeTenLocalDate      thrpt    3    33225.927 ±    6684.740  ops/ms
- PlusDays.javaLocalDate          thrpt    3    31878.518 ±   33477.932  ops/ms
- PlusDays.threeTenLocalDateTime  thrpt    3    30221.530 ±     761.391  ops/ms
- PlusDays.javaLocalDateTime      thrpt    3    29311.461 ±   16409.772  ops/ms
- PlusDays.jodaLocalDate          thrpt    3    24911.455 ±   30700.210  ops/ms
- PlusDays.threeTenZoneDateTime   thrpt    3     7703.428 ±     516.216  ops/ms
- PlusDays.javaZoneDateTime       thrpt    3     7539.305 ±    4669.747  ops/ms
- PlusDays.javaCalendar           thrpt    3     6440.795 ±    1063.632  ops/ms
- PlusDays.jodaDateTime           thrpt    3     2865.198 ±    1146.998  ops/ms
+ Benchmark                        Mode  Cnt        Score         Error   Units
+ PlusDays.emptyMethod            thrpt    3  2734596.462 ± 1214842.135  ops/ms
+ PlusDays.jodaLocalDateTime      thrpt    3    88385.623 ±   31972.719  ops/ms
+ PlusDays.time4JPlainTimestamp   thrpt    3    42208.842 ±    8242.766  ops/ms
+ PlusDays.jodaDateTimeUTC        thrpt    3    41026.604 ±    2329.884  ops/ms
+ PlusDays.javaLocalDate          thrpt    3    34184.331 ±     757.917  ops/ms
+ PlusDays.threeTenLocalDate      thrpt    3    32113.875 ±   19075.244  ops/ms
+ PlusDays.javaLocalDateTime      thrpt    3    30582.113 ±    1092.704  ops/ms
+ PlusDays.threeTenLocalDateTime  thrpt    3    28733.767 ±   11007.222  ops/ms
+ PlusDays.jodaLocalDate          thrpt    3    25305.501 ±   12448.679  ops/ms
+ PlusDays.javaZoneDateTime       thrpt    3     9262.515 ±    2136.671  ops/ms
+ PlusDays.threeTenZoneDateTime   thrpt    3     7748.664 ±    2291.185  ops/ms
+ PlusDays.javaCalendar           thrpt    3     6316.605 ±    2998.024  ops/ms
+ PlusDays.jodaDateTime           thrpt    3     3043.285 ±     245.133  ops/ms
  */
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Measurement(iterations = 3)
@@ -60,6 +63,7 @@ public class PlusDays {
     private java.time.ZonedDateTime mJavaZoneDateTime;
     private java.time.LocalDate mJavaLocalDate;
     private java.util.Calendar mJavaCalendar;
+    private net.time4j.PlainTimestamp m4JPlainTimestamp;
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
@@ -92,6 +96,8 @@ public class PlusDays {
         mJavaCalendar.set(Calendar.SECOND, 0);
         mJavaCalendar.set(Calendar.MILLISECOND, 0);
         blackhole.consume(mJavaCalendar.getTimeInMillis());
+
+        m4JPlainTimestamp = SystemClock.inLocalView().now();
     }
 
     @Benchmark
@@ -149,5 +155,10 @@ public class PlusDays {
     public int javaCalendar() {
         mJavaCalendar.add(Calendar.DATE, 1);
         return mJavaCalendar.get(Calendar.DAY_OF_YEAR);
+    }
+
+    @Benchmark
+    public long time4JPlainTimestamp() {
+        return m4JPlainTimestamp.plus(1, CalendarUnit.DAYS).getCalendarDate().getDayOfYear();
     }
 }

@@ -30,23 +30,23 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Benchmark                              Mode  Cnt        Score        Error   Units
- * DaysBetween.emptyMethod               thrpt    5  2812171.308 ± 447213.782  ops/ms
- * DaysBetween.jodaDateTimeWithDuration  thrpt    5    88206.065 ±  17887.996  ops/ms
- * DaysBetween.javaLocalDate             thrpt    5    56390.812 ±   6804.763  ops/ms
- * DaysBetween.threeTenLocalDate         thrpt    5    49895.598 ±  15472.236  ops/ms
- * DaysBetween.jodaLocalDate             thrpt    5    42294.798 ±   6495.756  ops/ms
- * DaysBetween.javaLocalDateTime         thrpt    5    37136.140 ±   1619.801  ops/ms
- * DaysBetween.threeTenLocalDateTime     thrpt    5    34943.060 ±   7337.524  ops/ms
- * DaysBetween.threeTenZoneDateTime      thrpt    5    34045.050 ±   6044.105  ops/ms
- * DaysBetween.javaZoneDateTime          thrpt    5    33560.256 ±   8509.666  ops/ms
- * DaysBetween.jodaDateTimeWithInterval  thrpt    5    28647.283 ±   4973.733  ops/ms
- * DaysBetween.jodaDateTime              thrpt    5    24977.819 ±   4372.560  ops/ms
- * DaysBetween.time4JPlainDate           thrpt    5    22340.419 ±   1516.389  ops/ms
- * DaysBetween.time4JPlainTimestamp      thrpt    5    16860.450 ±   3180.080  ops/ms
- * DaysBetween.javaCalendar              thrpt    5     2737.464 ±    102.169  ops/ms
- * DaysBetween.jodaLocalDateTime         thrpt    5     1992.802 ±    487.852  ops/ms
-
+ Benchmark                              Mode  Cnt        Score        Error   Units
+ DaysBetween.emptyMethod               thrpt    5  2936327.465 ± 118728.791  ops/ms
+ DaysBetween.jodaDateTimeWithDuration  thrpt    5    92468.724 ±   2720.293  ops/ms
+ DaysBetween.javaLocalDate             thrpt    5    58365.858 ±   2396.258  ops/ms
+ DaysBetween.threeTenLocalDate         thrpt    5    57324.813 ±   1405.676  ops/ms
+ DaysBetween.jodaLocalDate             thrpt    5    46846.123 ±   2737.699  ops/ms
+ DaysBetween.threeTenLocalDateTime     thrpt    5    38140.154 ±   1476.085  ops/ms
+ DaysBetween.javaLocalDateTime         thrpt    5    37993.317 ±   1109.025  ops/ms
+ DaysBetween.javaZoneDateTime          thrpt    5    36549.282 ±   1106.375  ops/ms
+ DaysBetween.threeTenZoneDateTime      thrpt    5    36480.015 ±   2239.400  ops/ms
+ DaysBetween.jodaDateTime              thrpt    5    30310.337 ±   1095.348  ops/ms
+ DaysBetween.jodaDateTimeWithInterval  thrpt    5    29608.832 ±   3598.556  ops/ms
+ DaysBetween.jodaDateTimeUTC           thrpt    5    26396.740 ±    859.252  ops/ms
+ DaysBetween.time4JPlainDate           thrpt    5    25490.917 ±    349.330  ops/ms
+ DaysBetween.time4JPlainTimestamp      thrpt    5    19030.706 ±    530.084  ops/ms
+ DaysBetween.javaCalendar              thrpt    5     2816.795 ±    117.897  ops/ms
+ DaysBetween.jodaLocalDateTime         thrpt    5     2202.552 ±     59.912  ops/ms
  */
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Measurement(iterations = 5, time = 5, timeUnit = TimeUnit.SECONDS)
@@ -55,6 +55,8 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode({Mode.Throughput})
 public class DaysBetween {
 
+    private org.joda.time.DateTime mJodaDateTimeUTCStart;
+    private org.joda.time.DateTime mJodaDateTimeUTCEnd;
     private org.joda.time.DateTime mJodaDateTimeStart;
     private org.joda.time.DateTime mJodaDateTimeEnd;
     private org.joda.time.LocalDateTime mJodaLocalDateTimeStart;
@@ -94,6 +96,10 @@ public class DaysBetween {
 
     @Setup
     public void setup(Blackhole blackhole) {
+        mJodaDateTimeUTCStart = org.joda.time.DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay();
+        mJodaDateTimeUTCEnd = mJodaDateTimeUTCStart.plusMonths(MONTHS_BETWEEN);
+        assert mJodaDateTimeUTCEnd.getZone().getID().equals(DateTimeZone.UTC.getID());
+
         mJodaDateTimeStart = org.joda.time.DateTime.now().withTimeAtStartOfDay();
         mJodaDateTimeEnd = mJodaDateTimeStart.plusMonths(MONTHS_BETWEEN);
         mJodaLocalDateStart = org.joda.time.LocalDate.now();
@@ -138,6 +144,11 @@ public class DaysBetween {
 
     @Benchmark
     public void emptyMethod() {
+    }
+
+    @Benchmark
+    public int jodaDateTimeUTC() {
+        return Days.daysBetween(mJodaDateTimeUTCStart, mJodaDateTimeUTCEnd).getDays();
     }
 
     @Benchmark

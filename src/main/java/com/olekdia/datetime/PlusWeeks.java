@@ -15,7 +15,10 @@
  */
 package com.olekdia.datetime;
 
+import net.time4j.CalendarUnit;
+import net.time4j.SystemClock;
 import org.joda.time.DateTimeConstants;
+import org.joda.time.DateTimeZone;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -27,26 +30,31 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Benchmark                         Mode  Cnt        Score         Error   Units
- * PlusWeeks.emptyMethod            thrpt    3  2664153.398 ± 3138890.206  ops/ms
- * PlusWeeks.jodaLocalDateTime      thrpt    3    69038.774 ±   31584.985  ops/ms
- * PlusWeeks.jodaLocalDate          thrpt    3    14185.858 ±     679.366  ops/ms
- * PlusWeeks.javaLocalDate          thrpt    3    13494.870 ±    6652.029  ops/ms
- * PlusWeeks.threeTenLocalDate      thrpt    3    11766.714 ±    2779.003  ops/ms
- * PlusWeeks.javaLocalDateTime      thrpt    3    10702.507 ±    5528.723  ops/ms
- * PlusWeeks.threeTenLocalDateTime  thrpt    3     9557.055 ±    1210.009  ops/ms
- * PlusWeeks.javaZoneDateTime       thrpt    3     3555.931 ±    1686.215  ops/ms
- * PlusWeeks.threeTenZoneDateTime   thrpt    3     3167.651 ±    1112.153  ops/ms
- * PlusWeeks.jodaDateTime           thrpt    3     2670.613 ±    2325.607  ops/ms
- * PlusWeeks.javaCalendar           thrpt    3     1839.816 ±    2514.172  ops/ms
+ Benchmark                         Mode  Cnt        Score        Error   Units
+ PlusWeeks.emptyMethod            thrpt    4  2848690.339 ± 530332.321  ops/ms
+ PlusWeeks.jodaLocalDateTime      thrpt    4    71962.070 ±   4952.688  ops/ms
+ PlusWeeks.time4JPlainTimestamp   thrpt    4    44332.292 ±   3179.340  ops/ms
+ PlusWeeks.jodaDateTime0UTC       thrpt    4    23387.710 ±   1078.957  ops/ms
+ PlusWeeks.jodaDateTimeUTC        thrpt    4    23341.561 ±    843.104  ops/ms
+ PlusWeeks.jodaLocalDate          thrpt    4    14558.057 ±    873.697  ops/ms
+ PlusWeeks.javaLocalDate          thrpt    4    12780.260 ±   3023.632  ops/ms
+ PlusWeeks.threeTenLocalDate      thrpt    4    12312.915 ±    787.278  ops/ms
+ PlusWeeks.javaLocalDateTime      thrpt    4    10924.023 ±    752.543  ops/ms
+ PlusWeeks.threeTenLocalDateTime  thrpt    4     9919.074 ±    712.080  ops/ms
+ PlusWeeks.javaZoneDateTime       thrpt    4     3821.568 ±    392.846  ops/ms
+ PlusWeeks.threeTenZoneDateTime   thrpt    4     3460.660 ±     48.649  ops/ms
+ PlusWeeks.jodaDateTime           thrpt    4     2870.329 ±    143.604  ops/ms
+ PlusWeeks.javaCalendar           thrpt    4     1983.252 ±    387.999  ops/ms
  */
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Measurement(iterations = 3)
-@Warmup(iterations = 2)
+@Measurement(iterations = 4, time = 5, timeUnit = TimeUnit.SECONDS)
+@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.Throughput)
+@BenchmarkMode({Mode.Throughput})
 public class PlusWeeks {
 
+    private org.joda.time.DateTime mJodaDateTimeUTC;
+    private org.joda.time.DateTime mJodaDateTime0UTC;
     private org.joda.time.DateTime mJodaDateTime;
     private org.joda.time.LocalDateTime mJodaLocalDateTime;
     private org.joda.time.LocalDate mJodaLocalDate;
@@ -57,6 +65,7 @@ public class PlusWeeks {
     private java.time.ZonedDateTime mJavaZoneDateTime;
     private java.time.LocalDate mJavaLocalDate;
     private Calendar mJavaCalendar;
+    private net.time4j.PlainTimestamp m4JPlainTimestamp;
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
@@ -69,6 +78,8 @@ public class PlusWeeks {
 
     @Setup
     public void setup(Blackhole blackhole) {
+        mJodaDateTime0UTC = org.joda.time.DateTime.now(DateTimeZone.UTC).withTimeAtStartOfDay();
+        mJodaDateTimeUTC = org.joda.time.DateTime.now(DateTimeZone.UTC);
         mJodaDateTime = org.joda.time.DateTime.now().withTimeAtStartOfDay();
         mJodaLocalDate = org.joda.time.LocalDate.now();
         mJodaLocalDateTime = mJodaLocalDate.toDateTimeAtStartOfDay().toLocalDateTime();
@@ -88,10 +99,22 @@ public class PlusWeeks {
         mJavaCalendar.set(Calendar.SECOND, 0);
         mJavaCalendar.set(Calendar.MILLISECOND, 0);
         blackhole.consume(mJavaCalendar.getTimeInMillis());
+
+        m4JPlainTimestamp = SystemClock.inLocalView().now();
     }
 
     @Benchmark
     public void emptyMethod() {
+    }
+
+    @Benchmark
+    public int jodaDateTime0UTC() {
+        return mJodaDateTime0UTC.withDayOfWeek(DateTimeConstants.MONDAY).plusWeeks(3).getDayOfWeek();
+    }
+
+    @Benchmark
+    public int jodaDateTimeUTC() {
+        return mJodaDateTimeUTC.withDayOfWeek(DateTimeConstants.MONDAY).plusWeeks(3).getDayOfWeek();
     }
 
     @Benchmark
@@ -147,6 +170,11 @@ public class PlusWeeks {
     public int javaCalendar() {
         mJavaCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         mJavaCalendar.add(Calendar.WEEK_OF_YEAR, 3);
-        return mJavaCalendar.get(Calendar.WEEK_OF_YEAR);
+        return mJavaCalendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+    @Benchmark
+    public long time4JPlainTimestamp() {
+        return m4JPlainTimestamp.plus(3, CalendarUnit.WEEKS).getCalendarDate().getDayOfWeek().getValue();
     }
 }

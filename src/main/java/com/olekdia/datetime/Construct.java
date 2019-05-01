@@ -16,6 +16,7 @@
 package com.olekdia.datetime;
 
 import net.time4j.SystemClock;
+import org.joda.time.DateTimeZone;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -30,6 +31,7 @@ import java.util.concurrent.TimeUnit;
  Benchmark                         Mode  Cnt        Score        Error   Units
  Construct.emptyMethod            thrpt    5  2845957.712 ± 286315.186  ops/ms
  Construct.jodaLocalDateTime      thrpt    5    22643.252 ±   1303.925  ops/ms
+ Construct.jodaDateTimeUTC        thrpt    5    21455.657 ±   2353.445  ops/ms
  Construct.jodaDateTime           thrpt    5    19267.265 ±    954.476  ops/ms
  Construct.jodaLocalDate          thrpt    5    16445.420 ±    865.370  ops/ms
  Construct.time4JPlainDate        thrpt    5    10660.525 ±    597.705  ops/ms
@@ -61,8 +63,8 @@ public class Construct {
     }
 
     @Benchmark
-    public void jodaDateTime(Blackhole blackhole) {
-        blackhole.consume(org.joda.time.DateTime.now());
+    public void jodaDateTimeUTC(Blackhole blackhole) {
+        blackhole.consume(org.joda.time.DateTime.now(DateTimeZone.UTC));
     }
 
     @Benchmark
