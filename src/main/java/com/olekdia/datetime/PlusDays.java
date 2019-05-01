@@ -15,6 +15,8 @@
  */
 package com.olekdia.datetime;
 
+import org.joda.time.DateTimeZone;
+import org.joda.time.Instant;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -29,6 +31,7 @@ import java.util.concurrent.TimeUnit;
  Benchmark                        Mode  Cnt        Score        Error   Units
  PlusDays.emptyMethod            thrpt    3  2831597.152 ± 1648131.285  ops/ms
  PlusDays.jodaLocalDateTime      thrpt    3    84447.391 ±   73131.181  ops/ms
+ PlusDays.jodaDateTimeUTC        thrpt    3    41128.731 ±    939.599  ops/ms
  PlusDays.threeTenLocalDate      thrpt    3    33225.927 ±    6684.740  ops/ms
  PlusDays.javaLocalDate          thrpt    3    31878.518 ±   33477.932  ops/ms
  PlusDays.threeTenLocalDateTime  thrpt    3    30221.530 ±     761.391  ops/ms
@@ -46,6 +49,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.Throughput)
 public class PlusDays {
 
+    private org.joda.time.DateTime mJodaDateTimeUTC;
     private org.joda.time.DateTime mJodaDateTime;
     private org.joda.time.LocalDateTime mJodaLocalDateTime;
     private org.joda.time.LocalDate mJodaLocalDate;
@@ -68,6 +72,7 @@ public class PlusDays {
 
     @Setup
     public void setup(Blackhole blackhole) {
+        mJodaDateTimeUTC = org.joda.time.DateTime.now(DateTimeZone.UTC);
         mJodaDateTime = org.joda.time.DateTime.now().withTimeAtStartOfDay();
         mJodaLocalDate = org.joda.time.LocalDate.now();
         mJodaLocalDateTime = mJodaLocalDate.toDateTimeAtStartOfDay().toLocalDateTime();
@@ -94,6 +99,11 @@ public class PlusDays {
     }
 
     @Benchmark
+    public int jodaDateTimeUTC() {
+        return mJodaDateTimeUTC.plusDays(1).getDayOfYear();
+    }
+
+   @Benchmark
     public int jodaDateTime() {
         return mJodaDateTime.plusDays(1).getDayOfYear();
     }
