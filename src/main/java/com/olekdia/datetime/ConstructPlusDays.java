@@ -17,6 +17,7 @@ package com.olekdia.datetime;
 
 import net.time4j.CalendarUnit;
 import net.time4j.SystemClock;
+import org.joda.time.DateTimeZone;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -25,11 +26,13 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Benchmark                                 Mode  Cnt        Score        Error   Units
  * ConstructPlusDays.emptyMethod            thrpt    5  2899820.953 ± 123332.328  ops/ms
+ * ConstructPlusDays.jodaDateTimeUTC        thrpt    5    17139.065 ±   1402.255  ops/ms
  * ConstructPlusDays.jodaLocalDateTime      thrpt    5    17040.003 ±   3789.682  ops/ms
  * ConstructPlusDays.jodaLocalDate          thrpt    5    10371.670 ±    662.855  ops/ms
  * ConstructPlusDays.time4JPlainDate        thrpt    5    10040.191 ±    388.830  ops/ms
@@ -60,7 +63,8 @@ public class ConstructPlusDays {
     }
 
     @Benchmark
-    public void emptyMethod() {
+    public int jodaDateTimeUTC() {
+        return org.joda.time.DateTime.now(DateTimeZone.UTC).plusDays(1).getDayOfYear();
     }
 
     @Benchmark
