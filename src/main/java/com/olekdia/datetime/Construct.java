@@ -15,6 +15,7 @@
  */
 package com.olekdia.datetime;
 
+import net.time4j.SystemClock;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -31,6 +32,8 @@ import java.util.concurrent.TimeUnit;
  Construct.jodaLocalDateTime      thrpt    5    22643.252 ±   1303.925  ops/ms
  Construct.jodaDateTime           thrpt    5    19267.265 ±    954.476  ops/ms
  Construct.jodaLocalDate          thrpt    5    16445.420 ±    865.370  ops/ms
+ Construct.time4JPlainDate        thrpt    5    10660.525 ±    597.705  ops/ms
+ Construct.time4JPlainTimestamp   thrpt    5     9293.600 ±   1040.165  ops/ms
  Construct.javaLocalDate          thrpt    5     5493.370 ±    358.704  ops/ms
  Construct.javaLocalDateTime      thrpt    5     5286.260 ±    556.990  ops/ms
  Construct.javaCalendar           thrpt    5     4547.192 ±    396.965  ops/ms
@@ -73,22 +76,13 @@ public class Construct {
     }
 
     @Benchmark
-    public void threeTenLocalDateTime(Blackhole blackhole) {
-        blackhole.consume(org.threeten.bp.LocalDateTime.now());
+    public void time4JPlainDate(Blackhole blackhole) {
+        blackhole.consume(SystemClock.inLocalView().today());
     }
 
     @Benchmark
-    public void threeTenLocalDate(Blackhole blackhole) {
-        blackhole.consume(org.threeten.bp.LocalDate.now());
-    }
-
-    @Benchmark
-    public void javaLocalDateTime(Blackhole blackhole) {
-        blackhole.consume(java.time.LocalDateTime.now());
-    }
-    @Benchmark
-    public void javaLocalDate(Blackhole blackhole) {
-        blackhole.consume(java.time.LocalDate.now());
+    public void time4JPlainTimestamp(Blackhole blackhole) {
+        blackhole.consume(SystemClock.inLocalView().now());
     }
 
     @Benchmark
