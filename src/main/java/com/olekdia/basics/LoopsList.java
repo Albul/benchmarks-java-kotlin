@@ -26,15 +26,23 @@ import java.util.concurrent.TimeUnit;
 
 /**
  Benchmark                               Mode  Cnt   Score    Error  Units
- LoopsList.forEachLoop                   avgt    5  20.297 ±  3.497  ms/op
- LoopsList.iterator                      avgt    5  20.525 ± 10.308  ms/op
- LoopsList.reverseForLoopWithFinalLocal  avgt    5  21.860 ± 13.554  ms/op
- LoopsList.forwardForLoopWithConst       avgt    5  28.248 ±  3.746  ms/op
- LoopsList.reverseForLoop                avgt    5  28.739 ±  8.553  ms/op
- LoopsList.parallelStream                avgt    5  59.685 ± 14.912  ms/op
- LoopsList.lambda                        avgt    5  73.399 ± 16.406  ms/op
- LoopsList.stream                        avgt    5  78.689 ± 13.484  ms/op
- LoopsList.forEachLambda                 avgt    5  79.026 ± 12.371  ms/op
+ LoopsList.forEachLambda                 avgt    5  69.213 ± 10.011  ms/op
+ LoopsList.forEachLoop                   avgt    5  18.301 ±  0.069  ms/op
+ LoopsList.forwardForLoopWithConst       avgt    5  18.376 ±  0.507  ms/op
+ LoopsList.iterator                      avgt    5  17.933 ±  1.690  ms/op
+ LoopsList.lambda                        avgt    5  55.534 ±  0.565  ms/op
+ LoopsList.parallelStream                avgt    5  56.016 ± 10.742  ms/op
+ LoopsList.reverseForLoop                avgt    5  18.008 ±  1.232  ms/op
+ LoopsList.reverseForLoopWithFinalLocal  avgt    5  18.027 ±  1.375  ms/op
+ LoopsList.stream                        avgt    5  61.308 ±  4.598  ms/op
+ LoopsListKt.forEach                     avgt    5  17.392 ±  1.038  ms/op
+ LoopsListKt.forInIndexes                avgt    5  17.806 ±  0.749  ms/op
+ LoopsListKt.forInItems                  avgt    5  17.539 ±  0.656  ms/op
+ LoopsListKt.forRange                    avgt    5  17.840 ±  0.509  ms/op
+ LoopsListKt.forRangeLocalList           avgt    5  17.794 ±  0.398  ms/op
+ LoopsListKt.forRangeReversed            avgt    5  18.323 ±  0.229  ms/op
+ LoopsListKt.forRangeUntil               avgt    5  17.756 ±  0.244  ms/op
+ LoopsListKt.iterator                    avgt    5  17.337 ±  0.649  ms/op
  */
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Measurement(iterations = 5)
@@ -45,7 +53,7 @@ public class LoopsList {
 
     public static final int SIZE = 10_000_000;
 
-    volatile List<Integer> mList = null;
+    final List<Integer> mList = new ArrayList<>(SIZE);
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
@@ -58,13 +66,13 @@ public class LoopsList {
 
     @Setup
     public void setup() {
-        mList = new ArrayList<Integer>(SIZE);
-        Random random = new Random();
+        final Random random = new Random();
         for (int i = 0; i < SIZE; i++) {
             mList.add(random.nextInt(SIZE));
         }
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int iterator() {
         int max = Integer.MIN_VALUE;
@@ -74,6 +82,7 @@ public class LoopsList {
         return max;
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int forEachLoop() {
         int max = Integer.MIN_VALUE;
@@ -83,6 +92,7 @@ public class LoopsList {
         return max;
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int forEachLambda() {
         final Wrapper wrapper = new Wrapper();
@@ -101,6 +111,7 @@ public class LoopsList {
         return wrapper.inner;
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int forwardForLoopWithConst() {
         int max = Integer.MIN_VALUE;
@@ -110,6 +121,7 @@ public class LoopsList {
         return max;
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int reverseForLoopWithFinalLocal() {
         int max = Integer.MIN_VALUE;
@@ -120,6 +132,7 @@ public class LoopsList {
         return max;
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int reverseForLoop() {
         int max = Integer.MIN_VALUE;
@@ -130,18 +143,21 @@ public class LoopsList {
     }
 
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int parallelStream() {
         Optional<Integer> max = mList.parallelStream().reduce(Integer::max);
         return max.get();
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int stream() {
         Optional<Integer> max = mList.stream().reduce(Integer::max);
         return max.get();
     }
 
+    @CompilerControl(CompilerControl.Mode.DONT_INLINE)
     @Benchmark
     public int lambda() {
         return mList.stream().reduce(Integer.MIN_VALUE, (a, b) -> Integer.max(a, b));
