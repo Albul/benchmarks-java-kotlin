@@ -77,6 +77,21 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.pcollections</groupId>
+            <artifactId>pcollections</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>androidx.collection</groupId>
+            <artifactId>collection</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javimmutable</groupId>
+            <artifactId>javimmutable-collections</artifactId>
+            <version>3.0.2</version>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -103,7 +118,32 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <name>Sonatype OSS</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>google</id>
+            <name>google</name>
+            <url>https://maven.google.com</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>jcenter</id>
+            <name>jcenter</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
@@ -117,7 +157,32 @@ THE POSSIBILITY OF SUCH DAMAGE.
                 <enabled>false</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>google</id>
+            <name>google-plugins</name>
+            <url>https://maven.google.com</url>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>jcenter</id>
+            <name>jcenter</name>
+            <url>http://jcenter.bintray.com</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
