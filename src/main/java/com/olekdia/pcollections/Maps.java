@@ -20,20 +20,20 @@ import java.util.TreeMap;
 public class Maps {
 
     public final Integer[] mArray;
-    public final HashMap<Object, Object> mHashMap;
-    public final LinkedHashMap<Object, Object> mLinkedHashMap;
-    public final TreeMap<Object, Object> mTreeMap;
-    public final ArrayMap<Object, Object> mArrayMap;
-    public final SparseArrayCompat<Object> mSparseArray;
-    public final HashPMap<Object, Object> mHashPMap;
-    public final IntTreePMap<Object> mIntTreePMap;
-    public final JImmutableMap<Object, Object> mJImmutableMap;
-    public final JImmutableMap<Object, Object> mJImmutableSortedMap;
-    public final JImmutableListMap<Object, Object> mJImmutableListMap;
-    public final JImmutableSetMap<Object, Object> mJImmutableSetMap;
-    public final MutableMap<Object, Object> mEclipseMutableMap;
-    public final ImmutableMap<Object, Object> mEclipseImmutableMap;
-    public final com.google.common.collect.ImmutableMap<Object, Object> mGuavaImmutableMap;
+    public final HashMap<Object, Integer> mHashMap;
+    public final LinkedHashMap<Object, Integer> mLinkedHashMap;
+    public final TreeMap<Object, Integer> mTreeMap;
+    public final ArrayMap<Object, Integer> mArrayMap;
+    public final SparseArrayCompat<Integer> mSparseArray;
+    public final HashPMap<Object, Integer> mHashPMap;
+    public final IntTreePMap<Integer> mIntTreePMap;
+    public final JImmutableMap<Object, Integer> mJImmutableMap;
+    public final JImmutableMap<Object, Integer> mJImmutableSortedMap;
+    public final JImmutableListMap<Object, Integer> mJImmutableListMap;
+    public final JImmutableSetMap<Object, Integer> mJImmutableSetMap;
+    public final MutableMap<Object, Integer> mEclipseMutableMap;
+    public final ImmutableMap<Object, Integer> mEclipseImmutableMap;
+    public final com.google.common.collect.ImmutableMap<Object, Integer> mGuavaImmutableMap;
 
     public Maps(final int size) {
         mArray = new Integer[size];
@@ -41,12 +41,12 @@ public class Maps {
             mArray[i] = Integer.valueOf(i);
         }
 
-        mHashMap = CollectionHelper.put(new HashMap<Object, Object>(size), mArray);
+        mHashMap = CollectionHelper.put(new HashMap<>(size), mArray);
 
-        mLinkedHashMap = CollectionHelper.put(new LinkedHashMap<Object, Object>(size), mArray);
-        mTreeMap = CollectionHelper.put(new TreeMap<Object, Object>(), mArray);
-        mArrayMap = CollectionHelper.put(new ArrayMap<Object, Object>(), mArray);
-        mSparseArray = CollectionHelper.put(new SparseArrayCompat<Object>(size), mArray);
+        mLinkedHashMap = CollectionHelper.put(new LinkedHashMap<>(size), mArray);
+        mTreeMap = CollectionHelper.put(new TreeMap<>(), mArray);
+        mArrayMap = CollectionHelper.put(new ArrayMap<>(), mArray);
+        mSparseArray = CollectionHelper.put(new SparseArrayCompat<>(size), mArray);
         mHashPMap = (HashPMap) CollectionHelper.plus(HashTreePMap.empty(), mArray);
         mIntTreePMap = (IntTreePMap) CollectionHelper.plus(IntTreePMap.empty(), mArray);
         mJImmutableMap = CollectionHelper.put(JImmutables.map(), mArray);

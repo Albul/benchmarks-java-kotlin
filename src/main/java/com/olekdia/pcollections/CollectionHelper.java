@@ -11,6 +11,7 @@ import org.pcollections.PMap;
 import org.pcollections.PSequence;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,23 @@ public class CollectionHelper {
         return m;
     }
 
+    public static long iterate(Iterator<Integer> it) {
+        long sum = 0L;
+        while (it.hasNext()) {
+            sum += it.next();
+        }
+        return sum;
+    }
+
     public static long iterate(Iterable<Integer> it) {
+        long sum = 0L;
+        for (Integer item : it) {
+            sum += item;
+        }
+        return sum;
+    }
+
+    public static long iterate(Collection<Integer> it) {
         long sum = 0L;
         for (Integer item : it) {
             sum += item;
