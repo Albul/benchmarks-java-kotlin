@@ -62,22 +62,22 @@ public class MapAppend {
 
     @Benchmark
     public Object HashMap() {
-        return CollectionHelper.put(new HashMap(), mArray);
+        return CollectionHelper.put(new HashMap<>(), mArray);
     }
 
     @Benchmark
     public Object ConcurrentHashMap() {
-        return CollectionHelper.put(new java.util.concurrent.ConcurrentHashMap<Object, Object>(), mArray);
+        return CollectionHelper.put(new java.util.concurrent.ConcurrentHashMap<>(), mArray);
     }
 
     @Benchmark
     public Object LinkedHashMap() {
-        return CollectionHelper.put(new LinkedHashMap(), mArray);
+        return CollectionHelper.put(new LinkedHashMap<>(), mArray);
     }
 
     @Benchmark
     public Object ArrayMap() {
-        return CollectionHelper.put(new ArrayMap<Object, Object>(), mArray);
+        return CollectionHelper.put(new ArrayMap<>(), mArray);
     }
 
     @Benchmark
