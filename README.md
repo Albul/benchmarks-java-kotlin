@@ -28,6 +28,7 @@ Comparision between:
 | ConsPStack | 6740323 |
 | JImmutableList | 181495708 |
 | TreePVector | 537843369 |
+
 ![Image description](./assets/list_add.png)
 
 ###### Check if list contains an item with 100 000 items
@@ -40,6 +41,7 @@ Comparision between:
 | LinkedList | 160295 |
 | JImmutableList | 882873 |
 | TreePVector | 2061153 |
+
 ![Image description](./assets/list_contains.png)
 
 ###### Iterate through list and sum up all its 200 000 items 
@@ -52,6 +54,7 @@ Comparision between:
 | TreePVector | 3996926 |
 | JImmutableList | 4090843 |
 | Stack | 5069004 |
+
 ![Image description](./assets/list_iterate.png)
 
 ###### Insert 100 000 items in the middle of the list 
@@ -64,6 +67,7 @@ Comparision between:
 | Stack | 354646074 |
 | LinkedList | 4779051906 |
 | ConsPStack | StackOverflowError |
+
 ConsPStack uses recursion to add a new element, so it get crashed.
 ![Image description](./assets/list_insert.png)
 
@@ -76,6 +80,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | LinkedList | 10669939267 |
 | TreePVector | 71387068447 |
 | ConsPStack | StackOverflowError |
+
 ![Image description](./assets/list_remove.png)
 
 #### Sets
@@ -88,6 +93,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | TreeSet | 782037380 |
 | MapPSet | 1011342491 |
 | ArraySet | 41545653723 |
+
 ![Image description](./assets/set_add_no_slowest.png)
 
 ###### Check if set contains an item with 100 000 items
@@ -99,6 +105,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | ArraySet | 27.3 |
 | JImmutableMultiset | 28.3 |
 | MapPSet | 54.5 |
+
 ![Image description](./assets/set_contains.png)
 
 ###### Iterate through set and sum up all its 200 000 items 
@@ -110,6 +117,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | MapPSet | 10379233 |
 | JImmutableMultiset | 19757874 |
 | JImmutableSet | 19788659 |
+
 ![Image description](./assets/set_iterate.png)
 
 ###### Remove 49 900 items from the set with 100 000 items
@@ -121,6 +129,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | MapPSet | 7255522 |
 | JImmutableSet | 9835587 |
 | JImmutableMultiset | 11816974 |
+
 ![Image description](./assets/set_remove.png)
 
 #### Maps
@@ -141,9 +150,9 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | SparseArray | 316250855 | 
 | ArrayMap | 506483387 | 
 | EclipseImmutableMap | 112506483387 | 
-| GuavaImmutableMap | 212506483387 | 
-![Image description](./assets/map_put_no_slowest.png)
+| GuavaImmutableMap | 212506483387 |
 
+![Image description](./assets/map_put_no_slowest.png)
 
 EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new element, that's why they are so slow
 
@@ -162,6 +171,7 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | IntTreePMap | 46.3 |
 | HashPMap | 72.7 |
 | JImmutableSortedMap | 80.0 |
+
 ![Image description](./assets/map_contains_key.png)
 
 ###### Check if map contains a value 500 000 items
@@ -193,6 +203,7 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | HashPMap | 3510105 |
 | JImmutableSortedMap | 7237417 |
 | JImmutableMap | 13431226 |
+
 ![Image description](./assets/map_iterate.png)
 
 ###### Random access to map with 100 000 items, 100 000 times
@@ -210,6 +221,7 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | HashPMap | 38952774 |
 | TreeMap | 40107206 |
 | JImmutableSortedMap | 48937962 |
+
 ![Image description](./assets/map_rand_access.png)
 
 ###### Remove 99 900 items from the middle of map with 100 000 items
@@ -227,4 +239,5 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | JImmutableMap | 20559828 |
 | EclipseImmutableMap | 128161834031 |
 | GuavaImmutableMap | 231715633402 |
+
 ![Image description](./assets/map_remove.png)
