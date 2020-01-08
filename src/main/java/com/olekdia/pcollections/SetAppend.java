@@ -15,13 +15,16 @@
  */
 package com.olekdia.pcollections;
 
+import androidx.collection.ArraySet;
 import org.javimmutable.collections.util.JImmutables;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.pcollections.*;
+import org.pcollections.ConsPStack;
+import org.pcollections.HashTreePSet;
+import org.pcollections.TreePVector;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -31,15 +34,15 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 2, time = 1, timeUnit = TimeUnit.SECONDS)
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
-public class ListInsertMiddle {
+public class SetAppend {
 
-    public static final int SIZE = 100_000;
+    public static final int SIZE = 1_000_000;
 
     volatile Object[] mValues = null;
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(ListInsertMiddle.class.getSimpleName())
+                .include(SetAppend.class.getSimpleName())
                 .forks(1)
                 .build();
 
@@ -57,47 +60,41 @@ public class ListInsertMiddle {
     }
 
     @Benchmark
-    public Object Stack() {
-        return CollectionHelper.listAddMid(new Stack(), mValues);
+    public Object HashSet() {
+        return CollectionHelper.collectionAdd(new HashSet(), mValues);
     }
 
     @Benchmark
-    public Object LinkedList() {
-        return CollectionHelper.listAddMid(new LinkedList(), mValues);
+    public Object TreeSet() {
+        return CollectionHelper.collectionAdd(new TreeSet(), mValues);
     }
 
     @Benchmark
-    public Object ArrayList() {
-        return CollectionHelper.listAddMid(new ArrayList(), mValues);
+    public Object ArraySet() {
+        return CollectionHelper.collectionAdd(new ArraySet(), mValues);
     }
 
     @Benchmark
-    public Object ArrayListPredefinedSize() {
-        return CollectionHelper.listAddMid(new ArrayList(SIZE), mValues);
+    public Object MapPSet() {
+        return CollectionHelper.pCollectionPlus(HashTreePSet.empty(), mValues);
     }
 
     @Benchmark
-    public Object ConsPStack() {
-        return CollectionHelper.pSequencePlusMid(ConsPStack.empty(), mValues); // todo
+    public Object JImmutableSet() {
+        return CollectionHelper.jImmutableInsert(JImmutables.set(), mValues);
     }
 
     @Benchmark
-    public Object TreePVector() {
-        return CollectionHelper.pSequencePlusMid(TreePVector.empty(), mValues);
+    public Object JImmutableMultiset() {
+        return CollectionHelper.jImmutableInsert(JImmutables.multiset(), mValues);
     }
-
-    @Benchmark
-    public Object JImmutableList() {
-        return CollectionHelper.jImmutableListInsertMid(JImmutables.list(), mValues);
-    }
-
 }
 /**
- Benchmark                       Mode  Cnt           Score           Error  Units
- JImmutableList             avgt    3    20964836.738 ±   1722225.979  ns/op
- TreePVector                avgt    3    71693585.551 ±  40239888.036  ns/op
- ArrayList                  avgt    3   353459261.333 ±  47117176.924  ns/op
- ArrayListPredefinedSize    avgt    3   353432854.111 ±  12926121.517  ns/op
- Stack                      avgt    3   354646074.300 ±  46478198.199  ns/op
- LinkedList                 avgt    3  4779051906.167 ± 249346891.513  ns/op
+ Benchmark           Mode  Cnt            Score            Error  Units
+ HashSet             avgt    3    130738821.386 ±   58064798.504  ns/op
+ JImmutableSet       avgt    3    434394386.889 ±  213710947.704  ns/op
+ JImmutableMultiset  avgt    3    568090231.593 ±  138751570.471  ns/op
+ TreeSet             avgt    3    782037380.714 ±  262579653.825  ns/op
+ MapPSet             avgt    3   1011342491.600 ±   64620203.511  ns/op
+ ArraySet            avgt    3  41545653723.333 ± 8760972793.302  ns/op
  */

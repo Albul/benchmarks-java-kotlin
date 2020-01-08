@@ -137,17 +137,17 @@ public class MapContainsKey {
     }
 }
 /*
-Benchmark                             Mode  Cnt   Score     Error  Units
-MapContainsKeyKt.HashMap              avgt    3   5.440 ±   0.269  ns/op
-MapContainsKeyKt.LinkedHashMap        avgt    3   5.615 ±   0.235  ns/op
-MapContainsKeyKt.EclipseMutableMap    avgt    3   6.447 ±   0.789  ns/op
-MapContainsKeyKt.EclipseImmutableMap  avgt    3   6.633 ±   0.239  ns/op
-MapContainsKeyKt.GuavaImmutableMap    avgt    3   7.482 ±   0.995  ns/op
-MapContainsKeyKt.SparseArray          avgt    3  28.768 ±   2.288  ns/op
-MapContainsKeyKt.ArrayMap             avgt    3  31.292 ±   2.682  ns/op
-MapContainsKeyKt.JImmutableMap        avgt    3  31.549 ± 174.154  ns/op
-MapContainsKeyKt.TreeMap              avgt    3  39.687 ±   4.201  ns/op
-MapContainsKeyKt.IntTreePMap          avgt    3  46.327 ±   3.100  ns/op
-MapContainsKeyKt.HashPMap             avgt    3  72.740 ± 645.224  ns/op
-MapContainsKeyKt.JImmutableSortedMap  avgt    3  80.044 ± 557.053  ns/op
+Benchmark            Mode  Cnt   Score     Error  Units
+HashMap              avgt    3   5.440 ±   0.269  ns/op
+LinkedHashMap        avgt    3   5.615 ±   0.235  ns/op
+EclipseMutableMap    avgt    3   6.447 ±   0.789  ns/op
+EclipseImmutableMap  avgt    3   6.633 ±   0.239  ns/op
+GuavaImmutableMap    avgt    3   7.482 ±   0.995  ns/op
+SparseArray          avgt    3  28.768 ±   2.288  ns/op
+ArrayMap             avgt    3  31.292 ±   2.682  ns/op
+JImmutableMap        avgt    3  31.549 ± 174.154  ns/op
+TreeMap              avgt    3  39.687 ±   4.201  ns/op
+IntTreePMap          avgt    3  46.327 ±   3.100  ns/op
+HashPMap             avgt    3  72.740 ± 645.224  ns/op
+JImmutableSortedMap  avgt    3  80.044 ± 557.053  ns/op
  */

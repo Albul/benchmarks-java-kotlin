@@ -164,17 +164,17 @@ public class MapRemove {
     }
 }
 /**
- Benchmark                      Mode  Cnt             Score             Error  Units
- MapRemove.LinkedHashMap        avgt    3        303094.324 ±        8765.099  ns/op
- MapRemove.HashMap              avgt    3        315987.659 ±       34726.954  ns/op
- MapRemove.EclipseMutableMap    avgt    3        434462.707 ±       30555.853  ns/op
- MapRemove.ArrayMap             avgt    3       2422169.607 ±      155403.329  ns/op
- MapRemove.TreeMap              avgt    3       3033837.070 ±      215616.925  ns/op
- MapRemove.SparseArray          avgt    3       4741959.969 ±      181123.074  ns/op
- MapRemove.IntTreePMap          avgt    3      10098933.989 ±     1458478.288  ns/op
- MapRemove.HashPMap             avgt    3      11884758.012 ±     2950846.472  ns/op
- MapRemove.JImmutableSortedMap  avgt    3      15688043.420 ±     2003986.832  ns/op
- MapRemove.JImmutableMap        avgt    3      20559828.913 ±     2287710.153  ns/op
- MapRemove.EclipseImmutableMap  avgt    3  128161834031.333 ± 14286151614.724  ns/op
- MapRemove.GuavaImmutableMap    avgt    3  231715633402.333 ± 31239189652.561  ns/op
+ Benchmark            Mode  Cnt             Score             Error  Units
+ LinkedHashMap        avgt    3        303094.324 ±        8765.099  ns/op
+ HashMap              avgt    3        315987.659 ±       34726.954  ns/op
+ EclipseMutableMap    avgt    3        434462.707 ±       30555.853  ns/op
+ ArrayMap             avgt    3       2422169.607 ±      155403.329  ns/op
+ TreeMap              avgt    3       3033837.070 ±      215616.925  ns/op
+ SparseArray          avgt    3       4741959.969 ±      181123.074  ns/op
+ IntTreePMap          avgt    3      10098933.989 ±     1458478.288  ns/op
+ HashPMap             avgt    3      11884758.012 ±     2950846.472  ns/op
+ JImmutableSortedMap  avgt    3      15688043.420 ±     2003986.832  ns/op
+ JImmutableMap        avgt    3      20559828.913 ±     2287710.153  ns/op
+ EclipseImmutableMap  avgt    3  128161834031.333 ± 14286151614.724  ns/op
+ GuavaImmutableMap    avgt    3  231715633402.333 ± 31239189652.561  ns/op
  */

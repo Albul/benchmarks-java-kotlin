@@ -160,17 +160,17 @@ public class MapRandomAccess {
     }
 }
 /**
- Benchmark                            Mode  Cnt         Score          Error  Units
- MapRandomAccess.GuavaImmutableMap    avgt    3   4168899.464 ±   455979.438  ns/op
- MapRandomAccess.EclipseMutableMap    avgt    3   4190743.319 ±   543295.733  ns/op
- MapRandomAccess.EclipseImmutableMap  avgt    3   4338962.472 ±   525461.566  ns/op
- MapRandomAccess.LinkedHashMap        avgt    3   7382515.846 ±  3591125.146  ns/op
- MapRandomAccess.HashMap              avgt    3   7877748.232 ±  4281366.623  ns/op
- MapRandomAccess.IntTreePMap          avgt    3  27638864.004 ± 10596447.754  ns/op
- MapRandomAccess.HashPMap             avgt    3  38952774.040 ±  6622175.188  ns/op
- MapRandomAccess.JImmutableMap        avgt    3  16173780.558 ±  3753961.180  ns/op
- MapRandomAccess.SparseArray          avgt    3  16062088.114 ±  1005895.664  ns/op
- MapRandomAccess.ArrayMap             avgt    3  17775730.687 ±  1597948.810  ns/op
- MapRandomAccess.TreeMap              avgt    3  40107206.180 ± 84275462.348  ns/op
- MapRandomAccess.JImmutableSortedMap  avgt    3  48937962.373 ± 15790775.872  ns/op
+ Benchmark            Mode  Cnt         Score          Error  Units
+ GuavaImmutableMap    avgt    3   4168899.464 ±   455979.438  ns/op
+ EclipseMutableMap    avgt    3   4190743.319 ±   543295.733  ns/op
+ EclipseImmutableMap  avgt    3   4338962.472 ±   525461.566  ns/op
+ LinkedHashMap        avgt    3   7382515.846 ±  3591125.146  ns/op
+ HashMap              avgt    3   7877748.232 ±  4281366.623  ns/op
+ IntTreePMap          avgt    3  27638864.004 ± 10596447.754  ns/op
+ HashPMap             avgt    3  38952774.040 ±  6622175.188  ns/op
+ JImmutableMap        avgt    3  16173780.558 ±  3753961.180  ns/op
+ SparseArray          avgt    3  16062088.114 ±  1005895.664  ns/op
+ ArrayMap             avgt    3  17775730.687 ±  1597948.810  ns/op
+ TreeMap              avgt    3  40107206.180 ± 84275462.348  ns/op
+ JImmutableSortedMap  avgt    3  48937962.373 ± 15790775.872  ns/op
  */
