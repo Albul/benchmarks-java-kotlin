@@ -84,7 +84,7 @@ public class ListIterate {
     }
 }
 /**
- Benchmar                   Mode  Cnt         Score         Error  Units
+ Benchmar            Mode  Cnt         Score         Error  Units
  ArrayList           avgt    3    239669.432 ±   92467.573  ns/op
  JImmutableStack     avgt    3    717536.062 ±   74045.253  ns/op
  ConsPStack          avgt    3    819618.136 ±  137649.083  ns/op
