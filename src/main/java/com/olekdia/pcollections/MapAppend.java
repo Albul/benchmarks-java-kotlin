@@ -138,21 +138,3 @@ public class MapAppend {
 //        );
 //    }
 }
-
-/**
- Benchmark                 Mode  Cnt          Score   Error  Units
- EclipseUnifiedMap         avgt    2    4616675.939          ns/op
- HashMap                   avgt    2    5903254.857          ns/op
- LinkedHashMap             avgt    2    6696584.220          ns/op
- EclipseConcurrentHashMap  avgt    2    9804946.514          ns/op
- JImmutableSetMap          avgt    2   34985327.042          ns/op
- JImmutableMap             avgt    2   39071872.393          ns/op
- JImmutableListMap         avgt    2   40579842.197          ns/op
- IntPMap                   avgt    2   49561724.256          ns/op
- ConcurrentHashMap         avgt    2   11176820.377          ns/op
- JImmutableSortedMap       avgt    2   62281212.901          ns/op
- HashPMap                  avgt    2   70886001.687          ns/op
- SparseArray               avgt    2  316250855.844          ns/op
- ArrayMap                  avgt    2  506483387.800          ns/op
-
- */

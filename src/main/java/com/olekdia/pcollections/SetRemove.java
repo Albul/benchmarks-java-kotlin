@@ -102,12 +102,3 @@ public class SetRemove {
         return s;
     }
 }
-/**
- Benchmark           Mode  Cnt         Score         Error  Units
- HashSet             avgt    3    157829.870 ±   14417.309  ns/op
- ArraySet            avgt    3   1637993.685 ±  150382.507  ns/op
- TreeSet             avgt    3   1683893.035 ±  127477.007  ns/op
- MapPSet             avgt    3   7255522.485 ±  794467.102  ns/op
- JImmutableSet       avgt    3   9835587.969 ± 2382279.819  ns/op
- JImmutableMultiset  avgt    3  11816974.853 ± 2374101.499  ns/op
-*/

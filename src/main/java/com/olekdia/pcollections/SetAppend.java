@@ -87,12 +87,3 @@ public class SetAppend {
         return CollectionHelper.add(JImmutables.multiset(), mValues);
     }
 }
-/**
- Benchmark           Mode  Cnt            Score            Error  Units
- HashSet             avgt    3    130738821.386 ±   58064798.504  ns/op
- JImmutableSet       avgt    3    434394386.889 ±  213710947.704  ns/op
- JImmutableMultiset  avgt    3    568090231.593 ±  138751570.471  ns/op
- TreeSet             avgt    3    782037380.714 ±  262579653.825  ns/op
- MapPSet             avgt    3   1011342491.600 ±   64620203.511  ns/op
- ArraySet            avgt    3  41545653723.333 ± 8760972793.302  ns/op
- */

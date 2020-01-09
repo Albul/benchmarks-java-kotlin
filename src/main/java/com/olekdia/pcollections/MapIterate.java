@@ -112,17 +112,3 @@ public class MapIterate {
         return CollectionHelper.iterate(mMaps.mGuavaImmutableMap.values());
     }
 }
-/**
- Benchmark            Mode  Cnt         Score         Error  Units
- ArrayMap             avgt    3    232476.654 ±   49492.634  ns/op
- EclipseMutableMap    avgt    3    446745.391 ±   97728.436  ns/op
- LinkedHashMap        avgt    3    483910.078 ±  180635.332  ns/op
- GuavaImmutableMap    avgt    3    520165.653 ± 1284320.917  ns/op
- EclipseImmutableMap  avgt    3    567447.082 ± 1103396.067  ns/op
- HashMap              avgt    3    595179.428 ±  714329.433  ns/op
- TreeMap              avgt    3    682662.779 ±   31041.721  ns/op
- IntTreePMap          avgt    3   2403714.311 ±  413160.920  ns/op
- HashPMap             avgt    3   3510105.051 ±  353017.160  ns/op
- JImmutableSortedMap  avgt    3   7237417.355 ± 4619409.769  ns/op
- JImmutableMap        avgt    3  13431226.785 ±  914941.410  ns/op
- */

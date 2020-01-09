@@ -106,11 +106,3 @@ public class ListRemoveMiddle {
         return l;
     }
 }
-/**
- Benchmark                        Mode  Cnt            Score            Error  Units
- ListRemoveMiddle.JImmutableList  avgt    3     19354452.062 ±    3690789.594  ns/op
- ListRemoveMiddle.Stack           avgt    3   4442481048.667 ±  581796504.858  ns/op
- ListRemoveMiddle.ArrayList       avgt    3   4802332800.333 ± 4234273501.413  ns/op
- ListRemoveMiddle.LinkedList      avgt    3  10669939267.000 ± 1040284126.110  ns/op
- ListRemoveMiddle.TreePVector     avgt    3  71387068447.667 ± 1001083199.505  ns/op
-*/

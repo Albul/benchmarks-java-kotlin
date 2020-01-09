@@ -120,18 +120,3 @@ public class MapContainsValue {
         return mMaps.mGuavaImmutableMap.containsValue(mSearchedObject);
     }
 }
-/**
- Benchmark            Mode  Cnt        Score        Error  Units
- SparseArray          avgt    3    14385.679 ±   1868.603  ns/op
- ArrayMap             avgt    3    31600.787 ±   2524.326  ns/op
- GuavaImmutableMap    avgt    3    68962.743 ±  25110.194  ns/op
- EclipseImmutableMap  avgt    3   205202.339 ± 215188.159  ns/op
- HashMap              avgt    3   372728.530 ±  19711.772  ns/op
- EclipseMutableMap    avgt    3   433659.820 ±  24302.814  ns/op
- LinkedHashMap        avgt    3   484310.017 ± 648762.363  ns/op
- TreeMap              avgt    3   489393.158 ±  55240.791  ns/op
- IntTreePMap          avgt    3   844354.772 ± 184813.408  ns/op
- HashPMap             avgt    3  1109556.589 ± 142587.544  ns/op
- JImmutableSortedMap  avgt    3  3297182.135 ± 502657.751  ns/op
- JImmutableMap        avgt    3  7285167.781 ± 693067.381  ns/op
- */

@@ -107,13 +107,3 @@ public class ListContains {
         return false;
     }
 }
-/**
- Benchmark                   Mode  Cnt        Score        Error  Units
- ArrayList           avgt    3    21330.006 ±   4085.652  ns/op
- ConsPStack          avgt    3    26286.167 ±    126.947  ns/op
- JImmutableStack     avgt    3    32304.469 ±  42974.235  ns/op
- Stack               avgt    3    85272.092 ±  33635.596  ns/op
- JImmutableList      avgt    3   882873.080 ± 838760.879  ns/op
- LinkedList          avgt    3   160295.575 ±  12800.602  ns/op
- TreePVector         avgt    3  2061153.413 ± 394914.038  ns/op
-*/

@@ -82,12 +82,3 @@ public class SetContains {
         return mSets.mJImmutableMultiset.contains(mSearchedObject);
     }
 }
-/**
- Benchmark           Mode  Cnt        Score        Error  Units
- HashSet             avgt    3        9.295 ±      0.564  ns/op
- TreeSet             avgt    3       23.523 ±      1.752  ns/op
- JImmutableSet       avgt    3       27.011 ±      8.597  ns/op
- ArraySet            avgt    3       27.352 ±      2.567  ns/op
- JImmutableMultiset  avgt    3       28.332 ±      1.514  ns/op
- MapPSet             avgt    3       54.518 ±      8.765  ns/op
-*/

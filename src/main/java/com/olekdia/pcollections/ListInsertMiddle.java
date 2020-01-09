@@ -92,12 +92,3 @@ public class ListInsertMiddle {
     }
 
 }
-/**
- Benchmark                       Mode  Cnt           Score           Error  Units
- JImmutableList             avgt    3    20964836.738 ±   1722225.979  ns/op
- TreePVector                avgt    3    71693585.551 ±  40239888.036  ns/op
- ArrayList                  avgt    3   353459261.333 ±  47117176.924  ns/op
- ArrayListPredefinedSize    avgt    3   353432854.111 ±  12926121.517  ns/op
- Stack                      avgt    3   354646074.300 ±  46478198.199  ns/op
- LinkedList                 avgt    3  4779051906.167 ± 249346891.513  ns/op
- */

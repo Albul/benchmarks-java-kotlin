@@ -86,12 +86,3 @@ public class ListAppend {
         return CollectionHelper.add(JImmutables.stack(), mValues);
     }
 }
-/**
- Benchmark                Mode  Cnt            Score            Error  Units
- ArrayList           avgt    3      4854015.393 ±     726020.062  ns/op
- JImmutableStack     avgt    3      4822985.535 ±    1349232.938  ns/op
- LinkedList          avgt    3      5921889.574 ±    2964356.442  ns/op
- ConsPStack          avgt    3      6740323.229 ±    3706995.429  ns/op
- JImmutableList      avgt    3    181495708.321 ±   19518804.826  ns/op
- TreePVector         avgt    3    537843369.033 ±   65941214.387  ns/op
- */

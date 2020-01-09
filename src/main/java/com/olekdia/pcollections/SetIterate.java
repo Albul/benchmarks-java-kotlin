@@ -89,12 +89,3 @@ public class SetIterate {
         return CollectionHelper.iterate(mSets.mJImmutableMultiset);
     }
 }
-/**
- Benchmar            Mode  Cnt         Score         Error  Units
- ArraySet            avgt    3    444388.283 ±   75054.628  ns/op
- HashSet             avgt    3   1984468.316 ± 2598625.356  ns/op
- TreeSet             avgt    3   2321796.720 ± 2474454.047  ns/op
- MapPSet             avgt    3  10379233.039 ± 1289215.156  ns/op
- JImmutableMultiset  avgt    3  19757874.889 ± 1037905.190  ns/op
- JImmutableSet       avgt    3  19788659.312 ± 1458216.162  ns/op
-*/

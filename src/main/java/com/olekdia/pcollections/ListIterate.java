@@ -83,13 +83,3 @@ public class ListIterate {
         return CollectionHelper.iterate(mLists.mJImmutableStack);
     }
 }
-/**
- Benchmar            Mode  Cnt         Score         Error  Units
- ArrayList           avgt    3    239669.432 ±   92467.573  ns/op
- JImmutableStack     avgt    3    717536.062 ±   74045.253  ns/op
- ConsPStack          avgt    3    819618.136 ±  137649.083  ns/op
- LinkedList          avgt    3    853572.949 ±  844866.532  ns/op
- TreePVector         avgt    3   3996926.866 ±  160252.301  ns/op
- JImmutableList      avgt    3   4090843.675 ± 7970449.729  ns/op
- Stack               avgt    3   5069004.426 ±  335499.537  ns/op
-*/
