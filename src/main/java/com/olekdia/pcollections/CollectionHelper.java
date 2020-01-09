@@ -17,32 +17,32 @@ import java.util.Map;
 
 public class CollectionHelper {
 
-    public static Insertable jImmutableInsert(Insertable c, final Object[] list) {
+    public static Insertable add(Insertable c, final Object[] list) {
         for (Object e : list) c = c.insert(e);
         return c;
     }
 
-    public static JImmutableList jImmutableListInsertMid(JImmutableList c, final Object[] list) {
+    public static JImmutableList addMid(JImmutableList c, final Object[] list) {
         for (Object e : list) c = c.insert(c.size() / 2, e);
         return c;
     }
 
-    public static PCollection pCollectionPlus(PCollection c, final Object[] list) {
+    public static PCollection plus(PCollection c, final Object[] list) {
         for (Object e : list) c = c.plus(e);
         return c;
     }
 
-    public static PSequence pSequencePlusMid(PSequence c, final Object[] list) {
+    public static PSequence plusMid(PSequence c, final Object[] list) {
         for (Object e : list) c = c.plus(c.size() / 2, e);
         return c;
     }
 
-    public static <T extends Collection> T collectionAdd(T c, final Object[] list) {
+    public static <T extends Collection> T add(T c, final Object[] list) {
         for (Object e : list) c.add(e);
         return c;
     }
 
-    public static <T extends List> T listAddMid(T c, final Object[] list) {
+    public static <T extends List> T addMid(T c, final Object[] list) {
         for (Object e : list) c.add(c.size() / 2, e);
         return c;
     }

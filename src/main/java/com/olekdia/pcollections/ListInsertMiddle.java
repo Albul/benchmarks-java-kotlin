@@ -58,37 +58,37 @@ public class ListInsertMiddle {
 
     @Benchmark
     public Object Stack() {
-        return CollectionHelper.listAddMid(new Stack(), mValues);
+        return CollectionHelper.addMid(new Stack(), mValues);
     }
 
     @Benchmark
     public Object LinkedList() {
-        return CollectionHelper.listAddMid(new LinkedList(), mValues);
+        return CollectionHelper.addMid(new LinkedList(), mValues);
     }
 
     @Benchmark
     public Object ArrayList() {
-        return CollectionHelper.listAddMid(new ArrayList(), mValues);
+        return CollectionHelper.addMid(new ArrayList(), mValues);
     }
 
     @Benchmark
     public Object ArrayListPredefinedSize() {
-        return CollectionHelper.listAddMid(new ArrayList(SIZE), mValues);
+        return CollectionHelper.addMid(new ArrayList(SIZE), mValues);
     }
 
     @Benchmark
     public Object ConsPStack() {
-        return CollectionHelper.pSequencePlusMid(ConsPStack.empty(), mValues); // todo
+        return CollectionHelper.plusMid(ConsPStack.empty(), mValues); // todo
     }
 
     @Benchmark
     public Object TreePVector() {
-        return CollectionHelper.pSequencePlusMid(TreePVector.empty(), mValues);
+        return CollectionHelper.plusMid(TreePVector.empty(), mValues);
     }
 
     @Benchmark
     public Object JImmutableList() {
-        return CollectionHelper.jImmutableListInsertMid(JImmutables.list(), mValues);
+        return CollectionHelper.addMid(JImmutables.list(), mValues);
     }
 
 }

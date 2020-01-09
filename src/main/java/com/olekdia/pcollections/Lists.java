@@ -26,12 +26,12 @@ public class Lists {
             mArray[i] = Integer.valueOf(i);
         }
 
-        mStack = CollectionHelper.collectionAdd(new Stack<>(), mArray);
-        mLinkedList = CollectionHelper.collectionAdd(new LinkedList(), mArray);
-        mArrayList = CollectionHelper.collectionAdd(new ArrayList(size), mArray);
-        mConsPStack = (ConsPStack) CollectionHelper.pCollectionPlus(ConsPStack.empty(), mArray);
-        mTreePVector = (TreePVector) CollectionHelper.pCollectionPlus(TreePVector.empty(), mArray);
-        mJImmutableList = (JImmutableList) CollectionHelper.jImmutableInsert(JImmutables.list(), mArray);
-        mJImmutableStack = (JImmutableStack) CollectionHelper.jImmutableInsert(JImmutables.stack(), mArray);
+        mStack = CollectionHelper.add(new Stack<>(), mArray);
+        mLinkedList = CollectionHelper.add(new LinkedList(), mArray);
+        mArrayList = CollectionHelper.add(new ArrayList(size), mArray);
+        mConsPStack = (ConsPStack) CollectionHelper.plus(ConsPStack.empty(), mArray);
+        mTreePVector = (TreePVector) CollectionHelper.plus(TreePVector.empty(), mArray);
+        mJImmutableList = (JImmutableList) CollectionHelper.add(JImmutables.list(), mArray);
+        mJImmutableStack = (JImmutableStack) CollectionHelper.add(JImmutables.stack(), mArray);
     }
 }

@@ -25,11 +25,11 @@ public class Sets {
             mArray[i] = Integer.valueOf(i);
         }
 
-        mHashSet = CollectionHelper.collectionAdd(new HashSet(size), mArray);
-        mTreeSet = CollectionHelper.collectionAdd(new TreeSet(), mArray);
-        mArraySet = CollectionHelper.collectionAdd(new ArraySet<>(size), mArray);
-        mMapPSet = (MapPSet) CollectionHelper.pCollectionPlus(HashTreePSet.empty(), mArray);
-        mJImmutableSet = (JImmutableSet) CollectionHelper.jImmutableInsert(JImmutables.set(), mArray);
-        mJImmutableMultiset = (JImmutableMultiset) CollectionHelper.jImmutableInsert(JImmutables.multiset(), mArray);
+        mHashSet = CollectionHelper.add(new HashSet(size), mArray);
+        mTreeSet = CollectionHelper.add(new TreeSet(), mArray);
+        mArraySet = CollectionHelper.add(new ArraySet<>(size), mArray);
+        mMapPSet = (MapPSet) CollectionHelper.plus(HashTreePSet.empty(), mArray);
+        mJImmutableSet = (JImmutableSet) CollectionHelper.add(JImmutables.set(), mArray);
+        mJImmutableMultiset = (JImmutableMultiset) CollectionHelper.add(JImmutables.multiset(), mArray);
     }
 }

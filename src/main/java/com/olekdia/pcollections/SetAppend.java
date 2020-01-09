@@ -22,9 +22,7 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.pcollections.ConsPStack;
 import org.pcollections.HashTreePSet;
-import org.pcollections.TreePVector;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -61,32 +59,32 @@ public class SetAppend {
 
     @Benchmark
     public Object HashSet() {
-        return CollectionHelper.collectionAdd(new HashSet(), mValues);
+        return CollectionHelper.add(new HashSet(), mValues);
     }
 
     @Benchmark
     public Object TreeSet() {
-        return CollectionHelper.collectionAdd(new TreeSet(), mValues);
+        return CollectionHelper.add(new TreeSet(), mValues);
     }
 
     @Benchmark
     public Object ArraySet() {
-        return CollectionHelper.collectionAdd(new ArraySet(), mValues);
+        return CollectionHelper.add(new ArraySet(), mValues);
     }
 
     @Benchmark
     public Object MapPSet() {
-        return CollectionHelper.pCollectionPlus(HashTreePSet.empty(), mValues);
+        return CollectionHelper.plus(HashTreePSet.empty(), mValues);
     }
 
     @Benchmark
     public Object JImmutableSet() {
-        return CollectionHelper.jImmutableInsert(JImmutables.set(), mValues);
+        return CollectionHelper.add(JImmutables.set(), mValues);
     }
 
     @Benchmark
     public Object JImmutableMultiset() {
-        return CollectionHelper.jImmutableInsert(JImmutables.multiset(), mValues);
+        return CollectionHelper.add(JImmutables.multiset(), mValues);
     }
 }
 /**

@@ -15,7 +15,6 @@
  */
 package com.olekdia.pcollections;
 
-import androidx.collection.ArraySet;
 import org.javimmutable.collections.util.JImmutables;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
@@ -59,32 +58,32 @@ public class ListAppend {
 
     @Benchmark
     public Object LinkedList() {
-        return CollectionHelper.collectionAdd(new LinkedList(), mValues);
+        return CollectionHelper.add(new LinkedList(), mValues);
     }
 
     @Benchmark
     public Object ArrayList() {
-        return CollectionHelper.collectionAdd(new ArrayList(), mValues);
+        return CollectionHelper.add(new ArrayList(), mValues);
     }
 
     @Benchmark
     public Object ConsPStack() {
-        return CollectionHelper.pCollectionPlus(ConsPStack.empty(), mValues);
+        return CollectionHelper.plus(ConsPStack.empty(), mValues);
     }
 
     @Benchmark
     public Object TreePVector() {
-        return CollectionHelper.pCollectionPlus(TreePVector.empty(), mValues);
+        return CollectionHelper.plus(TreePVector.empty(), mValues);
     }
 
     @Benchmark
     public Object JImmutableList() {
-        return CollectionHelper.jImmutableInsert(JImmutables.list(), mValues);
+        return CollectionHelper.add(JImmutables.list(), mValues);
     }
 
     @Benchmark
     public Object JImmutableStack() {
-        return CollectionHelper.jImmutableInsert(JImmutables.stack(), mValues);
+        return CollectionHelper.add(JImmutables.stack(), mValues);
     }
 }
 /**
