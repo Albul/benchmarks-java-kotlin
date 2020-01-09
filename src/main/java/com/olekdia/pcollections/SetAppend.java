@@ -59,17 +59,17 @@ public class SetAppend {
 
     @Benchmark
     public Object HashSet() {
-        return CollectionHelper.add(new HashSet(), mValues);
+        return CollectionHelper.add(new HashSet<>(), mValues);
     }
 
     @Benchmark
     public Object TreeSet() {
-        return CollectionHelper.add(new TreeSet(), mValues);
+        return CollectionHelper.add(new TreeSet<>(), mValues);
     }
 
     @Benchmark
     public Object ArraySet() {
-        return CollectionHelper.add(new ArraySet(), mValues);
+        return CollectionHelper.add(new ArraySet<>(), mValues);
     }
 
     @Benchmark

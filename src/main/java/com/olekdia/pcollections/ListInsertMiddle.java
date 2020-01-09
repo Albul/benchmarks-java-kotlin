@@ -58,27 +58,27 @@ public class ListInsertMiddle {
 
     @Benchmark
     public Object Stack() {
-        return CollectionHelper.addMid(new Stack(), mValues);
+        return CollectionHelper.addMid(new Stack<>(), mValues);
     }
 
     @Benchmark
     public Object LinkedList() {
-        return CollectionHelper.addMid(new LinkedList(), mValues);
+        return CollectionHelper.addMid(new LinkedList<>(), mValues);
     }
 
     @Benchmark
     public Object ArrayList() {
-        return CollectionHelper.addMid(new ArrayList(), mValues);
+        return CollectionHelper.addMid(new ArrayList<>(), mValues);
     }
 
     @Benchmark
     public Object ArrayListPredefinedSize() {
-        return CollectionHelper.addMid(new ArrayList(SIZE), mValues);
+        return CollectionHelper.addMid(new ArrayList<>(SIZE), mValues);
     }
 
     @Benchmark
     public Object ConsPStack() {
-        return CollectionHelper.plusMid(ConsPStack.empty(), mValues); // todo
+        return CollectionHelper.plusMid(ConsPStack.empty(), mValues); // Crash
     }
 
     @Benchmark

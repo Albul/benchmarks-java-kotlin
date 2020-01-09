@@ -58,12 +58,12 @@ public class ListAppend {
 
     @Benchmark
     public Object LinkedList() {
-        return CollectionHelper.add(new LinkedList(), mValues);
+        return CollectionHelper.add(new LinkedList<>(), mValues);
     }
 
     @Benchmark
     public Object ArrayList() {
-        return CollectionHelper.add(new ArrayList(), mValues);
+        return CollectionHelper.add(new ArrayList<>(), mValues);
     }
 
     @Benchmark
