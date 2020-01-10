@@ -88,13 +88,13 @@ public class MapIterate {
     }
 
     @Benchmark
-    public Object JImmutableMap() {
-        return CollectionHelper.iterate(mMaps.mJImmutableMap.values());
+    public Object JImmutableHashMap() {
+        return CollectionHelper.iterate(mMaps.mJImmutableHashMap.values());
     }
 
     @Benchmark
-    public Object JImmutableSortedMap() {
-        return CollectionHelper.iterate(mMaps.mJImmutableSortedMap.values());
+    public Object JImmutableTreeMap() {
+        return CollectionHelper.iterate(mMaps.mJImmutableTreeMap.values());
     }
 
     @Benchmark

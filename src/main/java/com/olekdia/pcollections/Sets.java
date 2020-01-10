@@ -3,6 +3,8 @@ package com.olekdia.pcollections;
 import androidx.collection.ArraySet;
 import org.javimmutable.collections.JImmutableMultiset;
 import org.javimmutable.collections.JImmutableSet;
+import org.javimmutable.collections.hash.JImmutableHashSet;
+import org.javimmutable.collections.tree.JImmutableTreeSet;
 import org.javimmutable.collections.util.JImmutables;
 import org.pcollections.HashTreePSet;
 import org.pcollections.MapPSet;
@@ -16,8 +18,8 @@ public class Sets {
     public final TreeSet<Integer> mTreeSet;
     public final ArraySet<Integer> mArraySet;
     public final MapPSet<Integer> mMapPSet;
-    public final JImmutableSet<Integer> mJImmutableSet;
-    public final JImmutableMultiset<Integer> mJImmutableMultiset;
+    public final JImmutableHashSet<Integer> mJImmutableHashSet;
+    public final JImmutableTreeSet<Integer> mJImmutableTreeSet;
 
     public Sets(final int size) {
         mArray = new Integer[size];
@@ -29,7 +31,7 @@ public class Sets {
         mTreeSet = CollectionHelper.add(new TreeSet(), mArray);
         mArraySet = CollectionHelper.add(new ArraySet<>(size), mArray);
         mMapPSet = (MapPSet) CollectionHelper.plus(HashTreePSet.empty(), mArray);
-        mJImmutableSet = (JImmutableSet) CollectionHelper.add(JImmutables.set(), mArray);
-        mJImmutableMultiset = (JImmutableMultiset) CollectionHelper.add(JImmutables.multiset(), mArray);
+        mJImmutableHashSet = (JImmutableHashSet) CollectionHelper.add(JImmutables.set(), mArray);
+        mJImmutableTreeSet = (JImmutableTreeSet) CollectionHelper.add(JImmutables.sortedSet(), mArray);
     }
 }

@@ -15,23 +15,12 @@
  */
 package com.olekdia.pcollections;
 
-import androidx.collection.ArraySet;
-import org.javimmutable.collections.JImmutableList;
-import org.javimmutable.collections.JImmutableMultiset;
-import org.javimmutable.collections.JImmutableSet;
-import org.javimmutable.collections.JImmutableStack;
-import org.javimmutable.collections.util.JImmutables;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.pcollections.ConsPStack;
-import org.pcollections.HashTreePSet;
-import org.pcollections.MapPSet;
-import org.pcollections.TreePVector;
 
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -80,12 +69,12 @@ public class SetIterate {
     }
 
     @Benchmark
-    public Object JImmutableSet() {
-        return CollectionHelper.iterate(mSets.mJImmutableSet);
+    public Object JImmutableHashSet() {
+        return CollectionHelper.iterate(mSets.mJImmutableHashSet);
     }
 
     @Benchmark
-    public Object JImmutableMultiset() {
-        return CollectionHelper.iterate(mSets.mJImmutableMultiset);
+    public Object JImmutableTreeSet() {
+        return CollectionHelper.iterate(mSets.mJImmutableTreeSet);
     }
 }

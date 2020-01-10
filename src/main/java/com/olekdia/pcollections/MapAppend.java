@@ -96,23 +96,18 @@ public class MapAppend {
     }
 
     @Benchmark
-    public Object JImmutableMap() {
+    public Object JImmutableHashMap() {
         return CollectionHelper.put(JImmutables.map(), mArray);
     }
 
     @Benchmark
-    public Object JImmutableSortedMap() {
+    public Object JImmutableTreeMap() {
         return CollectionHelper.put(JImmutables.sortedMap(), mArray);
     }
 
     @Benchmark
-    public Object JImmutableListMap() {
-        return CollectionHelper.put(JImmutables.listMap(), mArray);
-    }
-
-    @Benchmark
-    public Object JImmutableSetMap() {
-        return CollectionHelper.put(JImmutables.setMap(), mArray);
+    public Object JImmutableMapBuilder() {
+        return CollectionHelper.put(JImmutables.mapBuilder(), mArray);
     }
 
     @Benchmark

@@ -77,12 +77,18 @@ public class ListAppend {
     }
 
     @Benchmark
-    public Object JImmutableList() {
+    public Object JImmutableTreeList() {
         return CollectionHelper.add(JImmutables.list(), mValues);
     }
 
     @Benchmark
-    public Object JImmutableStack() {
+    public Object JImmutableLinkedStack() {
         return CollectionHelper.add(JImmutables.stack(), mValues);
     }
+
+    @Benchmark
+    public Object JImmutableListBuilder() {
+        return CollectionHelper.add(JImmutables.listBuilder(), mValues);
+    }
+
 }

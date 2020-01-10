@@ -22,6 +22,16 @@ public class CollectionHelper {
         return c;
     }
 
+    public static JImmutableList add(JImmutableList.Builder b, final Object[] list) {
+        for (Object e : list) b.add(e);
+        return b.build();
+    }
+
+    public static JImmutableSet add(JImmutableSet.Builder b, final Object[] list) {
+        for (Object e : list) b.add(e);
+        return b.build();
+    }
+
     public static JImmutableList addMid(JImmutableList c, final Object[] list) {
         for (Object e : list) c = c.insert(c.size() / 2, e);
         return c;
@@ -93,6 +103,11 @@ public class CollectionHelper {
     public static JImmutableMap put(JImmutableMap m, final Object[] list) {
         for (Object e : list) m = m.assign(e, e);
         return m;
+    }
+
+    public static JImmutableMap put(JImmutableMap.Builder m, final Object[] list) {
+        for (Object e : list) m.add(e, e);
+        return m.build();
     }
 
     public static JImmutableSetMap put(JImmutableSetMap m, final Object[] list) {

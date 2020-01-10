@@ -73,12 +73,12 @@ public class SetContains {
     }
 
     @Benchmark
-    public Object JImmutableSet() {
-        return mSets.mJImmutableSet.contains(mSearchedObject);
+    public Object JImmutableHashSet() {
+        return mSets.mJImmutableHashSet.contains(mSearchedObject);
     }
 
     @Benchmark
-    public Object JImmutableMultiset() {
-        return mSets.mJImmutableMultiset.contains(mSearchedObject);
+    public Object JImmutableTreeSet() {
+        return mSets.mJImmutableTreeSet.contains(mSearchedObject);
     }
 }

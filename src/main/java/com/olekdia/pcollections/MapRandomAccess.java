@@ -115,19 +115,19 @@ public class MapRandomAccess {
     }
 
     @Benchmark
-    public Object JImmutableMap() {
+    public Object JImmutableHashMap() {
         Integer value = null;
         for (int i = 0; i < SIZE; i++) {
-            value = mMaps.mJImmutableMap.get(mMaps.mArray[mRandom.nextInt(SIZE)]);
+            value = mMaps.mJImmutableHashMap.get(mMaps.mArray[mRandom.nextInt(SIZE)]);
         }
         return value;
     }
 
     @Benchmark
-    public Object JImmutableSortedMap() {
+    public Object JImmutableTreeMap() {
         Integer value = null;
         for (int i = 0; i < SIZE; i++) {
-            value = mMaps.mJImmutableSortedMap.get(mMaps.mArray[mRandom.nextInt(SIZE)]);
+            value = mMaps.mJImmutableTreeMap.get(mMaps.mArray[mRandom.nextInt(SIZE)]);
         }
         return value;
     }

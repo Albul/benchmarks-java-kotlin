@@ -15,22 +15,12 @@
  */
 package com.olekdia.pcollections;
 
-import androidx.collection.ArrayMap;
-import androidx.collection.SparseArrayCompat;
-import kotlin.jvm.Volatile;
-import org.eclipse.collections.api.map.ImmutableMap;
-import org.eclipse.collections.api.map.MutableMap;
-import org.eclipse.collections.impl.map.mutable.UnifiedMap;
-import org.javimmutable.collections.*;
-import org.javimmutable.collections.util.JImmutables;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.pcollections.*;
 
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -96,13 +86,13 @@ public class MapContainsValue {
     }
 
     @Benchmark
-    public Object JImmutableMap() {
-        return mMaps.mJImmutableMap.getMap().containsValue(mSearchedObject);
+    public Object JImmutableHashMap() {
+        return mMaps.mJImmutableHashMap.getMap().containsValue(mSearchedObject);
     }
 
     @Benchmark
-    public Object JImmutableSortedMap() {
-        return mMaps.mJImmutableSortedMap.getMap().containsValue(mSearchedObject);
+    public Object JImmutableTreeMap() {
+        return mMaps.mJImmutableTreeMap.getMap().containsValue(mSearchedObject);
     }
 
     @Benchmark

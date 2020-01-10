@@ -15,28 +15,12 @@
  */
 package com.olekdia.pcollections;
 
-import androidx.collection.ArrayMap;
-import androidx.collection.SparseArrayCompat;
-import org.eclipse.collections.api.map.ImmutableMap;
-import org.eclipse.collections.api.map.MutableMap;
-import org.eclipse.collections.impl.map.mutable.UnifiedMap;
-import org.javimmutable.collections.JImmutableListMap;
-import org.javimmutable.collections.JImmutableMap;
-import org.javimmutable.collections.JImmutableSetMap;
-import org.javimmutable.collections.util.JImmutables;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.pcollections.HashPMap;
-import org.pcollections.HashTreePMap;
-import org.pcollections.IntTreePMap;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Random;
-import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -102,23 +86,13 @@ public class MapContainsKey {
     }
 
     @Benchmark
-    public Object JImmutableMap() {
-        return mMaps.mJImmutableMap.find(mSearchedObject);
+    public Object JImmutableHashMap() {
+        return mMaps.mJImmutableHashMap.find(mSearchedObject);
     }
 
     @Benchmark
-    public Object JImmutableSortedMap() {
-        return mMaps.mJImmutableSortedMap.find(mSearchedObject);
-    }
-
-    @Benchmark
-    public Object JImmutableListMap() {
-        return mMaps.mJImmutableListMap.find(mSearchedObject);
-    }
-
-    @Benchmark
-    public Object JImmutableSetMap() {
-        return mMaps.mJImmutableSetMap.contains(mSearchedObject);
+    public Object JImmutableTreeMap() {
+        return mMaps.mJImmutableTreeMap.find(mSearchedObject);
     }
 
     @Benchmark

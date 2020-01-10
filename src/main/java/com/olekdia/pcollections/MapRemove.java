@@ -116,8 +116,8 @@ public class MapRemove {
     }
 
     @Benchmark
-    public Object JImmutableMap() {
-        JImmutableMap<Object, Integer> map = mMaps.mJImmutableMap;
+    public Object JImmutableHashMap() {
+        JImmutableMap<Object, Integer> map = mMaps.mJImmutableHashMap;
         for (int i = SIZE - 100; i >= 0; i--) {
             map = map.delete(mMaps.mArray[i / 2]);
         }
@@ -125,8 +125,8 @@ public class MapRemove {
     }
 
     @Benchmark
-    public Object JImmutableSortedMap() {
-        JImmutableMap<Object, Integer> map = mMaps.mJImmutableSortedMap;
+    public Object JImmutableTreeMap() {
+        JImmutableMap<Object, Integer> map = mMaps.mJImmutableTreeMap;
         for (int i = SIZE - 100; i >= 0; i--) {
             map = map.delete(mMaps.mArray[i / 2]);
         }

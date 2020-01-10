@@ -78,12 +78,17 @@ public class SetAppend {
     }
 
     @Benchmark
-    public Object JImmutableSet() {
+    public Object JImmutableHashSet() {
         return CollectionHelper.add(JImmutables.set(), mValues);
     }
 
     @Benchmark
-    public Object JImmutableMultiset() {
-        return CollectionHelper.add(JImmutables.multiset(), mValues);
+    public Object JImmutableTreeSet() {
+        return CollectionHelper.add(JImmutables.sortedSet(), mValues);
+    }
+
+    @Benchmark
+    public Object JImmutableSetBuilder() {
+        return CollectionHelper.add(JImmutables.setBuilder(), mValues);
     }
 }

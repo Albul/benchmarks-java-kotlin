@@ -17,6 +17,7 @@ package com.olekdia.pcollections;
 
 import org.javimmutable.collections.JImmutableMultiset;
 import org.javimmutable.collections.JImmutableSet;
+import org.javimmutable.collections.tree.JImmutableTreeSet;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -85,8 +86,8 @@ public class SetRemove {
     }
 
     @Benchmark
-    public Object JImmutableSet() {
-        JImmutableSet<Integer> s = mSets.mJImmutableSet;
+    public Object JImmutableHashSet() {
+        JImmutableSet<Integer> s = mSets.mJImmutableHashSet;
         for (int i = SIZE - 100; i >= SIZE / 2; i--) {
             s = s.delete(mSets.mArray[i / 2]);
         }
@@ -94,8 +95,8 @@ public class SetRemove {
     }
 
     @Benchmark
-    public Object JImmutableMultiset() {
-        JImmutableMultiset<Integer> s = mSets.mJImmutableMultiset;
+    public Object JImmutableTreeSet() {
+        JImmutableSet<Integer> s = mSets.mJImmutableTreeSet;
         for (int i = SIZE - 100; i >= SIZE / 2; i--) {
             s = s.delete(mSets.mArray[i / 2]);
         }

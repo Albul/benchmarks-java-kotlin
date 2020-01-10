@@ -27,10 +27,8 @@ public class Maps {
     public final SparseArrayCompat<Integer> mSparseArray;
     public final HashPMap<Object, Integer> mHashPMap;
     public final IntTreePMap<Integer> mIntTreePMap;
-    public final JImmutableMap<Object, Integer> mJImmutableMap;
-    public final JImmutableMap<Object, Integer> mJImmutableSortedMap;
-    public final JImmutableListMap<Object, Integer> mJImmutableListMap;
-    public final JImmutableSetMap<Object, Integer> mJImmutableSetMap;
+    public final JImmutableMap<Object, Integer> mJImmutableHashMap;
+    public final JImmutableMap<Object, Integer> mJImmutableTreeMap;
     public final MutableMap<Object, Integer> mEclipseMutableMap;
     public final ImmutableMap<Object, Integer> mEclipseImmutableMap;
     public final com.google.common.collect.ImmutableMap<Object, Integer> mGuavaImmutableMap;
@@ -49,10 +47,8 @@ public class Maps {
         mSparseArray = CollectionHelper.put(new SparseArrayCompat<>(size), mArray);
         mHashPMap = (HashPMap) CollectionHelper.plus(HashTreePMap.empty(), mArray);
         mIntTreePMap = (IntTreePMap) CollectionHelper.plus(IntTreePMap.empty(), mArray);
-        mJImmutableMap = CollectionHelper.put(JImmutables.map(), mArray);
-        mJImmutableSortedMap = CollectionHelper.put(JImmutables.sortedMap(), mArray);
-        mJImmutableListMap = CollectionHelper.put(JImmutables.listMap(), mArray);
-        mJImmutableSetMap = CollectionHelper.put(JImmutables.setMap(), mArray);
+        mJImmutableHashMap = CollectionHelper.put(JImmutables.map(), mArray);
+        mJImmutableTreeMap = CollectionHelper.put(JImmutables.sortedMap(), mArray);
         mEclipseMutableMap = (MutableMap) CollectionHelper.put(new UnifiedMap<>(), mArray);
         mEclipseImmutableMap = mEclipseMutableMap.toImmutable();
         mGuavaImmutableMap = new com.google.common.collect.ImmutableMap.Builder().putAll(mHashMap).build();
