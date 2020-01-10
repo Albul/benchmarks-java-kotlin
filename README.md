@@ -23,10 +23,11 @@ Comparision between:
 | Collection | Score _ns/op_ |
 | ------ | ------ |
 | ArrayList | 4854015 |
-| JImmutableStack | 4822985 |
+| JImmutableLinkedStack | 4822985 |
 | LinkedList | 5921889 |
 | ConsPStack | 6740323 |
-| JImmutableList | 181495708 |
+| JImmutableListBuilder | 8467454 |
+| JImmutableTreeList | 181495708 |
 | TreePVector | 537843369 |
 
 ![Image description](./assets/list_add.png)
@@ -36,10 +37,10 @@ Comparision between:
 | ------ | ------ |
 | ArrayList | 21330 |
 | ConsPStack | 26286 |
-| JImmutableStack | 32304 |
+| JImmutableLinkedStack | 32304 |
 | Stack | 85272 |
 | LinkedList | 160295 |
-| JImmutableList | 882873 |
+| JImmutableTreeList | 882873 |
 | TreePVector | 2061153 |
 
 ![Image description](./assets/list_contains.png)
@@ -48,11 +49,11 @@ Comparision between:
 | Collection | Score _ns/op_ |
 | ------ | ------ |
 | ArrayList | 239669 |
-| JImmutableStack | 717536 |
+| JImmutableLinkedStack | 717536 |
 | ConsPStack | 819618 |
 | LinkedList | 853572 |
 | TreePVector | 3996926 |
-| JImmutableList | 4090843 |
+| JImmutableTreeList | 4090843 |
 | Stack | 5069004 |
 
 ![Image description](./assets/list_iterate.png)
@@ -60,7 +61,7 @@ Comparision between:
 ###### Insert 100 000 items in the middle of the list 
 | Collection | Score _ns/op_ |
 | ------ | ------ |
-| JImmutableList | 20964836 |
+| JImmutableTreeList | 20964836 |
 | TreePVector | 71693585 |
 | ArrayList | 353459261 |
 | ArrayList _with predefined size_ | 353432854 |
@@ -74,7 +75,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 ###### Remove 74 900 items from the middle of a list with 100 000 items
 | Collection | Score _ns/op_ |
 | ------ | ------ |
-| JImmutableList | 19354452 |
+| JImmutableTreeList | 19354452 |
 | Stack | 4442481048 |
 | ArrayList | 4802332800 |
 | LinkedList | 10669939267 |
@@ -88,10 +89,11 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | Collection | Score _ns/op_ |
 | ------ | ------ |
 | HashSet | 130738821 |
-| JImmutableSet | 434394386 |
-| JImmutableMultiset | 568090231 |
+| JImmutableSetBuilder | 288206431 |
+| JImmutableHashSet | 434394386 |
 | TreeSet | 782037380 |
-| MapPSet | 1011342491 |
+| MapPSet | 1025752840 |
+| JImmutableTreeSet | 1089905931 |
 | ArraySet | 41545653723 |
 
 ![Image description](./assets/set_add_no_slowest.png)
@@ -101,7 +103,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | ------ | ------ |
 | HashSet | 9.2 |
 | TreeSet | 23.5 |
-| JImmutableSet | 27.0 |
+| JImmutableHashSet | 27.0 |
 | ArraySet | 27.3 |
 | JImmutableMultiset | 28.3 |
 | MapPSet | 54.5 |
@@ -116,7 +118,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | TreeSet | 2321796 |
 | MapPSet | 10379233 |
 | JImmutableMultiset | 19757874 |
-| JImmutableSet | 19788659 |
+| JImmutableHashSet | 19788659 |
 
 ![Image description](./assets/set_iterate.png)
 
@@ -127,7 +129,7 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | ArraySet | 1637993 |
 | TreeSet | 1683893 |
 | MapPSet | 7255522 |
-| JImmutableSet | 9835587 |
+| JImmutableHashSet | 9835587 |
 | JImmutableMultiset | 11816974 |
 
 ![Image description](./assets/set_remove.png)
@@ -141,11 +143,10 @@ ConsPStack uses recursion to add a new element, so it get crashed.
 | LinkedHashMap | 6696584 | 
 | EclipseConcurrentHashMap | 9804946 | 
 | ConcurrentHashMap | 11176820 | 
-| JImmutableSetMap | 34985327 | 
-| JImmutableMap | 39071872 | 
-| JImmutableListMap | 40579842 | 
+| JImmutableMapBuilder | 26891367 |
+| JImmutableHashMap | 39071872 | 
 | IntPMap | 49561724 | 
-| JImmutableSortedMap | 62281212 | 
+| JImmutableTreeMap | 62281212 | 
 | HashPMap | 70886001 | 
 | SparseArray | 316250855 | 
 | ArrayMap | 506483387 | 
@@ -166,11 +167,11 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | GuavaImmutableMap | 7.4 |
 | SparseArray | 28.7 |
 | ArrayMap | 31.2 |
-| JImmutableMap | 31.5 |
+| JImmutableHashMap | 31.5 |
 | TreeMap | 39.6 |
 | IntTreePMap | 46.3 |
 | HashPMap | 72.7 |
-| JImmutableSortedMap | 80.0 |
+| JImmutableTreeMap | 80.0 |
 
 ![Image description](./assets/map_contains_key.png)
 
@@ -187,8 +188,8 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | TreeMap | 489393 |
 | IntTreePMap | 844354 |
 | HashPMap | 1109556 |
-| JImmutableSortedMap | 3297182 |
-| JImmutableMap | 7285167 |
+| JImmutableTreeMap | 3297182 |
+| JImmutableHashMap | 7285167 |
 
 ###### Iterate through map and sum up all its 100 000 items 
 | Collection | Score _ns/op_ |
@@ -201,8 +202,8 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | TreeMap | 682662 |
 | IntTreePMap | 2403714 |
 | HashPMap | 3510105 |
-| JImmutableSortedMap | 7237417 |
-| JImmutableMap | 13431226 |
+| JImmutableTreeMap | 7237417 |
+| JImmutableHashMap | 13431226 |
 
 ![Image description](./assets/map_iterate.png)
 
@@ -214,13 +215,13 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | EclipseImmutableMap | 4338962 |
 | LinkedHashMap | 7382515 |
 | HashMap | 7877748 |
-| JImmutableMap | 16173780 |
+| JImmutableHashMap | 16173780 |
 | SparseArray | 16062088 |
 | ArrayMap | 17775730 |
 | IntTreePMap | 27638864 |
 | HashPMap | 38952774 |
 | TreeMap | 40107206 |
-| JImmutableSortedMap | 48937962 |
+| JImmutableTreeMap | 48937962 |
 
 ![Image description](./assets/map_rand_access.png)
 
@@ -235,8 +236,8 @@ EclipseImmutableMap and GuavaImmutableMap totally recreate map when adding new e
 | SparseArray | 4741959 |
 | IntTreePMap | 10098933 |
 | HashPMap | 11884758 |
-| JImmutableSortedMap | 15688043 |
-| JImmutableMap | 20559828 |
+| JImmutableTreeMap | 15688043 |
+| JImmutableHashMap | 20559828 |
 | EclipseImmutableMap | 128161834031 |
 | GuavaImmutableMap | 231715633402 |
 
